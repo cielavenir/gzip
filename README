@@ -1,3 +1,7 @@
+This gzip build can output the same stream as zlib's minigzip, where `deflateInit2(&strm, -1, 8, 15 + 16, 8, 0)`.
+
+----
+
 This is the file README for the gzip distribution.
 
 The GNU gzip home page is https://www.gnu.org/software/gzip.
