@@ -92,7 +92,7 @@ extern int method;         /* compression method */
 #  ifdef SMALL_MEM
 #    define DIST_BUFSIZE 0x2000 /* buffer for distances, see trees.c */
 #  else
-#    define DIST_BUFSIZE 0x8000 /* buffer for distances, see trees.c */
+#    define DIST_BUFSIZE 0x4000 /* buffer for distances, see trees.c */
 #  endif
 #endif
 

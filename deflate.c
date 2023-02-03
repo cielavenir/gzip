@@ -378,6 +378,7 @@ longest_match(IPos cur_match)
     register uch *match;                        /* matched string */
     register int len;                           /* length of current match */
     int best_len = prev_length;                 /* best match length so far */
+    int nice_match_ = nice_match;
     IPos limit = strstart > (IPos)MAX_DIST ? strstart - (IPos)MAX_DIST : NIL;
     /* Stop when cur_match becomes <= limit. To simplify the code,
      * we prevent matches with the string of window index 0.
@@ -407,6 +408,7 @@ longest_match(IPos cur_match)
     if (prev_length >= good_match) {
         chain_length >>= 2;
     }
+    if ((uint)nice_match_ > lookahead) nice_match_ = (int)lookahead;
     Assert(strstart <= window_size-MIN_LOOKAHEAD, "insufficient lookahead");
 
     do {
@@ -481,7 +483,7 @@ longest_match(IPos cur_match)
         if (len > best_len) {
             match_start = cur_match;
             best_len = len;
-            if (len >= nice_match) break;
+            if (len >= nice_match_) break;
 #ifdef UNALIGNED_OK
             scan_end = *(ush*)(scan+best_len-1);
 #else

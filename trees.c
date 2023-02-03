@@ -122,7 +122,7 @@ static int near extra_blbits[BL_CODES]/* extra bits for each bit length code */
 #  ifdef MEDIUM_MEM
 #    define LIT_BUFSIZE  0x4000
 #  else
-#    define LIT_BUFSIZE  0x8000
+#    define LIT_BUFSIZE  0x4000
 #  endif
 #  endif
 #endif
@@ -1005,6 +1005,7 @@ ct_tally (int dist, int lc)
         flag_buf[last_flags++] = flags;
         flags = 0, flag_bit = 1;
     }
+#if 0
     /* Try to guess if it is profitable to stop the current block here */
     if (level > 2 && (last_lit & 0xfff) == 0) {
         /* Compute an upper bound for the compressed length */
@@ -1020,6 +1021,7 @@ ct_tally (int dist, int lc)
                100L - out_length*100L/in_length));
         if (last_dist < last_lit/2 && out_length < in_length/2) return 1;
     }
+#endif
     return (last_lit == LIT_BUFSIZE-1 || last_dist == DIST_BUFSIZE);
     /* We avoid equality with LIT_BUFSIZE because of wraparound at 64K
      * on 16 bit machines and because stored blocks are restricted to
