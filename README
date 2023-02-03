@@ -1,5 +1,7 @@
 This gzip build can output the same stream as zlib's minigzip, where `deflateInit2(&strm, -1, 8, 15 + 16, 8, 0)`.
 
+The opposite way, to have zlib the same stream as original gzip, is currently ongoing at https://github.com/cielavenir/zlib/tree/v1.2.11_changeLitBufSize .
+
 ----
 
 This is the file README for the gzip distribution.
